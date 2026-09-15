@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Моё Мишкино</title>
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="css/style.css"> 
+    
+    <!-- ВАЖНО: Мета-тег viewport для адаптации под мобильные устройства -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<!-- === НАЧАЛО ТЕЛА СТРАНИЦЫ === -->
+<body>
+
+    <!-- 1. ШАПКА САЙТА (Исправлено закрытие блока nav) -->
+    <header class="site-header">
+        <!-- Левая часть: Логотип и меню -->
+        <div class="logo-menu">
+            <h1><a href="index.html">Моё Мишкино</a></h1>
+            
+            <!-- ИСПРАВЛЕНИЕ: Добавлен закрывающий тег </nav>, которого не было -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="menu.html">Меню</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Правая часть: Мини-форма входа -->
+        <div class="mini-auth-panel">
+            <form id="miniLoginForm" class="mini-form">
+                <input type="text" name="login" placeholder="Логин" required>
+                <input type="password" name="pass" placeholder="Пароль" required>
+                <button type="submit" class="btn-mini-login">Вход</button>
+            </form>
+            <div class="links-row">
+                <a href="#" id="openAuthFromMini">Авторизация</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- === ОСНОВНОЙ КОНТЕНТ (ПОД ЗАГОЛОВКОМ) === -->
+    <main class="content">
+        <!-- Главный баннер страницы -->
+        <section class="hero">
+            <h1>Добро пожаловать!</h1>
+            <p>Последние новости, объявления о продаже излишков и свежие вакансии.</p>
+        </section>
+
+        <!-- Сетка из четырех блоков -->
+        <div class="grid-dashboard">
+            
+            <!-- БЛОК 1: НОВОСТИ -->
+            <article class="dashboard-widget news">
+                <h2>📰 Новости</h2>
+                <ul class="news-list">
+                    <li><strong>15.09.26:</strong> Мы обновили ассортимент продукции.</li>
+                    <li><strong>10.09.26:</strong> Изменились условия доставки по городу.</li>
+                </ul>
+                <a href="#" class="btn-readmore">Все новости →</a>
+            </article>
+
+            <!-- БЛОК 2: ПРОДАМ ИЗЛИШКИ -->
+            <article class="dashboard-widget ads">
+                <h2>🚜 Продам излишки</h2>
+                
+                <!-- ИСПРАВЛЕНИЕ: Обернули h3 и price в div.ad-item-content для правильного отступа -->
+                <div class="ad-item">
+                    <div class="ad-item-content">
+                        <h3>Саженцы яблони</h3>
+                    </div>
+                    <span class="price">500 ₽</span>
+                </div>
+                
+                <div class="ad-item">
+                    <div class="ad-item-content">
+                        <h3>Корм для птицы</h3>
+                    </div>
+                    <span class="price">1200 ₽</span>
+                </div>
+                
+                <a href="#" class="btn-readmore">Подать объявление →</a>
+            </article>
+
+            <!-- БЛОК 3: РАБОТА -->
+            <article class="dashboard-widget jobs">
+                <h2>💼 Работа</h2>
+                <div class="job-item">
+                    <h3>Требуется водитель</h3>
+                </div>
+                <div class="job-item">
+                    <h3>Агроном-консультант</h3>
+                </div>
+                <a href="#" class="btn-readmore">Разместить вакансию →</a>
+            </article>
+
+            <!-- БЛОК 4: ОТЗЫВЫ -->
+            <article class="dashboard-widget reviews">
+                <h2>⭐ Отзывы</h2>
+                <blockquote class="review-text">
+                    "Отличное качество саженцев!"
+                    <cite>- Иван Петров</cite>
+                </blockquote>
+                <a href="#" class="btn-readmore">Оставить отзыв →</a>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- 2. МОДАЛЬНОЕ ОКНО (остается внизу body) -->
+    <!-- Сюда нужно вставить ваш большой блок #authModal из прошлых шагов -->
+    <div id="authModal" class="modal">
+        <!-- ... содержимое формы авторизации ... -->
+    </div>
+
+    <!-- 3. СКРИПТЫ -->
+    <script src="js/script.js"></script>
+</body>
+</html>
