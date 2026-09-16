@@ -3,54 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Моё Мишкино</title>
-    <!-- Подключаем стили -->
-    <link rel="stylesheet" href="css/style.css"> 
     
-    <!-- ВАЖНО: Мета-тег viewport для адаптации под мобильные устройства -->
+    <link rel="stylesheet" href="css/style.css"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<!-- === НАЧАЛО ТЕЛА СТРАНИЦЫ === -->
 <body>
 
-    <!-- 1. ШАПКА САЙТА (Исправлено закрытие блока nav) -->
+    <!-- 1. ШАПКА САЙТА -->
     <header class="site-header">
-        <!-- Левая часть: Логотип и меню -->
         <div class="logo-menu">
             <h1><a href="index.html">Моё Мишкино</a></h1>
             
-            <!-- ИСПРАВЛЕНИЕ: Добавлен закрывающий тег </nav>, которого не было -->
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html">Главная</a></li>
-                    <li><a href="menu.html">Меню</a></li>
+                    <li><a href="menu.php">Меню</a></li> 
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
         </div>
 
-        <!-- Правая часть: Мини-форма входа -->
         <div class="mini-auth-panel">
-            <form id="miniLoginForm" class="mini-form">
+            <!-- Форма входа в шапке -->
+            <form action="auth.php" method="POST" id="miniLoginForm" class="mini-form" enctype="application/x-www-form-urlencoded">
                 <input type="text" name="login" placeholder="Логин" required>
                 <input type="password" name="pass" placeholder="Пароль" required>
                 <button type="submit" class="btn-mini-login">Вход</button>
             </form>
+            
             <div class="links-row">
+                <!-- ИСПРАВЛЕНО: # вместо auth.html -->
                 <a href="#" id="openAuthFromMini">Авторизация</a>
             </div>
         </div>
     </header>
 
-    <!-- === ОСНОВНОЙ КОНТЕНТ (ПОД ЗАГОЛОВКОМ) === -->
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
     <main class="content">
-        <!-- Главный баннер страницы -->
+        
         <section class="hero">
             <h1>Добро пожаловать!</h1>
             <p>Последние новости, объявления о продаже излишков и свежие вакансии.</p>
         </section>
 
-        <!-- Сетка из четырех блоков -->
         <div class="grid-dashboard">
             
             <!-- БЛОК 1: НОВОСТИ -->
@@ -67,18 +63,13 @@
             <article class="dashboard-widget ads">
                 <h2>🚜 Продам излишки</h2>
                 
-                <!-- ИСПРАВЛЕНИЕ: Обернули h3 и price в div.ad-item-content для правильного отступа -->
                 <div class="ad-item">
-                    <div class="ad-item-content">
-                        <h3>Саженцы яблони</h3>
-                    </div>
+                    <div class="ad-item-content"><h3>Саженцы яблони</h3></div>
                     <span class="price">500 ₽</span>
                 </div>
                 
                 <div class="ad-item">
-                    <div class="ad-item-content">
-                        <h3>Корм для птицы</h3>
-                    </div>
+                    <div class="ad-item-content"><h3>Корм для птицы</h3></div>
                     <span class="price">1200 ₽</span>
                 </div>
                 
@@ -88,12 +79,8 @@
             <!-- БЛОК 3: РАБОТА -->
             <article class="dashboard-widget jobs">
                 <h2>💼 Работа</h2>
-                <div class="job-item">
-                    <h3>Требуется водитель</h3>
-                </div>
-                <div class="job-item">
-                    <h3>Агроном-консультант</h3>
-                </div>
+                <div class="job-item"><h3>Требуется водитель</h3></div>
+                <div class="job-item"><h3>Агроном-консультант</h3></div>
                 <a href="#" class="btn-readmore">Разместить вакансию →</a>
             </article>
 
@@ -110,13 +97,34 @@
         </div>
     </main>
 
-    <!-- 2. МОДАЛЬНОЕ ОКНО (остается внизу body) -->
-    <!-- Сюда нужно вставить ваш большой блок #authModal из прошлых шагов -->
+    <!-- === МОДАЛЬНОЕ ОКНО (Исправлено: убран дубль ID) === -->
     <div id="authModal" class="modal">
-        <!-- ... содержимое формы авторизации ... -->
+        <div class="modal-content">
+            <!-- Кнопка закрытия -->
+            <span class="close-button" id="closeAuthModal">&times;</span>
+            
+            <h2>Авторизация</h2>
+            
+            <!-- Форма входа -->
+            <form action="auth.php" method="POST" class="auth-form">
+                <input type="hidden" name="action" value="login">
+                
+                <label for="login-modal">Логин:</label>
+                <input type="text" id="login-modal" name="login" placeholder="Введите логин" required autofocus>
+                
+                <label for="pass-modal">Пароль:</label>
+                <input type="password" id="pass-modal" name="pass" placeholder="Введите пароль" required>
+                
+                <button type="submit" class="btn-mini-login btn-block">Войти</button>
+            </form>
+            
+            <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
+                Нет аккаунта? Обратитесь к администратору.
+            </p>
+        </div>
     </div>
 
-    <!-- 3. СКРИПТЫ -->
+    <!-- СКРИПТЫ -->
     <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Моё Мишкино | Контакты</title>
+    
+    <link rel="stylesheet" href="css/style.css"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!-- 1. ШАПКА САЙТА -->
+    <header class="site-header">
+        <div class="logo-menu">
+            <h1><a href="index.html">Моё Мишкино</a></h1>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="menu.php">Меню</a></li>
+                    <!-- Исправлено: убран style="", используется CSS-класс .active -->
+                    <li><a href="#" class="active">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="mini-auth-panel">
+            <!-- ИСПРАВЛЕНО: Добавлены action="auth.php" и method="POST" -->
+            <form action="auth.php" method="POST" id="miniLoginForm" class="mini-form">
+                <input type="text" name="login" placeholder="Логин" required>
+                <input type="password" name="pass" placeholder="Пароль" required>
+                <button type="submit" class="btn-mini-login">Вход</button>
+            </form>
+            
+            <div class="links-row">
+                <a href="#" id="openAuthFromMini">Авторизация</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main class="content">
+        <section class="hero" style="text-align: center; padding: 50px 20px;">
+            <h1>Как нас найти?</h1>
+            <p>Мы всегда рады гостям и новым партнерам.</p>
+        
+            <div style="margin-top: 30px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+                <div class="dashboard-widget" style="width: 300px; text-align: left;">
+                    <h2>📍 Адрес</h2>
+                    <p>д. Мишкино, ул. Юбилейная, д. 5<br>Ежедневно с 09:00 до 21:00</p>
+                </div>
+            
+                <div class="dashboard-widget" style="width: 300px; text-align: left;">
+                    <h2>☎️ Телефон</h2>
+                    <p>+7 (917) 638-09-67<br>Позвоните нам для сотрудничества!</p>
+                </div>
+            
+                <div class="dashboard-widget" style="width: 300px; text-align: left;">
+                    <h2>✉️ Email</h2>
+                    <p>itadm25@mail.ru</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- МОДАЛЬНОЕ ОКНО -->
+    <div id="authModal" class="modal"></div>
+
+    <!-- СКРИПТЫ -->
+    <script src="js/script.js"></script>
+</body>
+</html>

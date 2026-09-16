@@ -5,53 +5,55 @@
     margin-top: 20px;
 }
 
-@media (min-width: 768px) {
+/* Адаптация под планшеты и ПК */
+@media (min-width: 768px) {     
     .grid-dashboard {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
 /* Стили самих окон (виджетов) */
 .dashboard-widget {
-    background-color: #227462;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 20px;
-    color: #ffffff; 
-    height: 100%; /* Чтобы карточки были одинаковой высоты */
+    background-color: #227462;  
+    border: 1px solid #e0e0e0;  
+    border-radius: 8px;         
+    padding: 20px;              
+    color: #ffffff;             
     
-    /* ИСПРАВЛЕНИЕ: Включаем Flex-контейнер для всего блока */
+    /* Flex-контейнер на весь рост */
     display: flex;
     flex-direction: column;
+    height: 100%; /* Возвращаем высоту, чтобы карточка тянулась родителем Grid */
 }
 
 .dashboard-widget h2 {
     margin-top: 0;
     font-size: 1.2rem;
-    color: #ffffff !important; 
+    color: #ffffff !important;
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 10px;
     margin-bottom: 15px;
 }
 
-/* НОВОЕ: Обертка для контента внутри виджета */
+/* НОВОЕ: Обертка для контента — КРИТИЧНО ВАЖНО ДЛЯ МАГИИ AUTO */
 .widget-content {
-    flex-grow: 1; /* Занимает всё свободное место, прижимая кнопку вниз */
+    flex-grow: 1; /* Занимает всё свободное место */
+    overflow-y: auto; /* Если текста очень много, появится скролл внутри блока */
 }
 
 /* КНОПКИ ВНУТРИ ВИДЖЕТОВ */
 .btn-readmore {
     display: inline-block;
-    margin-top: 15px; 
+    margin-top: auto; /* Прижимает кнопку к низу флекс-контейнера */
     color: #007bff;
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
-    background-color: rgba(255, 255, 255, 0.2); 
+    background-color: rgba(255, 255, 255, 0.2);
     padding: 8px 15px;
     border-radius: 20px;
     transition: all 0.2s;
-    align-self: flex-start; /* Выравнивание кнопки по левому краю */
+    align-self: flex-start;
 }
 .btn-readmore:hover {
     color: #ffffff;
@@ -59,12 +61,11 @@
     transform: translateY(-2px);
 }
 
-
 /* Остальные стили списков и цен */
 .news-list {
     list-style-type: none;
     padding: 0;
-    margin: 0 0 15px 0; /* Убираем отступ снизу от UL, он теперь у кнопки */
+    margin: 0 0 15px 0;
     line-height: 1.6;
 }
 .news-list li {
@@ -81,33 +82,128 @@
     top: 0;
 }
 
-.price { 
-    float: right; 
-    color: #28a745; 
-    font-weight: bold; 
-    font-size: 1.1rem; 
-}
-
-.review-text { 
-    font-style: italic; 
-    border-left: 3px solid #ffc107; 
-    padding-left: 15px; 
-    color: #e0e0e0; 
-    flex-grow: 1; /* Для отзывов тоже важно занять пространство */
-}
-.review-text cite { 
-    display: block; 
-    text-align: right; 
-    margin-top: 5px; 
-    font-style: normal;
-    color: #bb86fc;
-}
-.ad-item, .job-item { 
+/* ИСПРАВЛЕНИЕ: Замена float на Flexbox для выравнивания цены */
+.ad-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-bottom: 1px dashed #ccc; 
     padding-bottom: 10px; 
     margin-bottom: 10px;
     color: #e0e0e0;
 }
-.ad-item:last-child, .job-item:last-child { 
+.ad-item:last-child { 
     border-bottom: none; 
+}
+.price {
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    color: #28a745; 
+}
+
+/* Специфичные стили для работы и отзывов */
+.job-item { 
+    border-bottom: 1px dashed #ccc; 
+    padding-bottom: 10px; 
+    margin-bottom: 10px;
+    color: #e0e0e0;
+}
+.job-item:last-child { 
+    border-bottom: none; 
+}
+.review-text { 
+    font-style: italic;
+    border-left: 3px solid #ffc107;
+    padding-left: 15px;
+    color: #e0e0e0;
+    flex-grow: 1;
+}
+.review-text cite { 
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    font-style: normal;
+    color: #bb86fc;
+}
+
+/* === СТИЛИ МОДАЛЬНОГО ОКНА === */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Чуть меньше отступ сверху */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    animation-name: animatetop;
+    animation-duration: 0.3s;
+    border-radius: 8px;
+    position: relative;
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+.close-button {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    transition: color 0.2s;
+}
+.close-button:hover {
+    color: black;
+}
+
+/* ФОРМА АВТОРИЗАЦИИ ВНУТРИ МОДАЛКИ */
+.auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+.auth-form input[type="text"],
+.auth-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.auth-form button:hover {
+    background-color: #0056b3;
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
 }

@@ -31,3 +31,12 @@ my-website/
 └── data/ # Папка для защищенных данных (JSON с паролями) 
       ├── users.dat 
       └── .htaccess # Файл защиты Apache
+##  База данных сайта: Моё Мишкино
+___
+
+http://localhost/phpmyadmin/index.php?route=/database/structure&db=mischkino_bd
+
+
+## Сайт:
+___
+http://localhost/index.html
